@@ -63,7 +63,7 @@ BEGIN
         SELECT CATEGORIA_id_categoria INTO r_categoria FROM unidad WHERE id_unidad = r_unidad;
         SELECT capacidad_maxima INTO capacidad_unidad FROM categoria WHERE id_categoria = r_categoria;
         
-        IF (ventas + i_cantidad) <= capacidad_unidad THEN
+        IF (ventas + i_cantidad) < capacidad_unidad THEN
 			UPDATE trayecto SET boletos_vendidos = boletos_vendidos + i_cantidad WHERE id_trayecto = i_trayecto;
 		ELSE
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No hay suficientes asientos disponibles';
